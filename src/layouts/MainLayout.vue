@@ -12,10 +12,8 @@
         />
 
         <q-toolbar-title>
-          Quasar App
+         MyLanguage Admin
         </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
       </q-toolbar>
     </q-header>
 
@@ -28,7 +26,7 @@
         <q-item-label
           header
         >
-          Essential Links
+         Setup Tasks
         </q-item-label>
 
         <EssentialLink
@@ -51,10 +49,10 @@ import EssentialLink from 'components/EssentialLink.vue'
 
 const linksList = [
   {
-    title: 'Docs',
-    caption: 'quasar.dev',
+    title: 'Set Default Bibles',
+
     icon: 'school',
-    link: 'https://quasar.dev'
+    link: '/bibles/default'
   },
   {
     title: 'Github',
