@@ -4,17 +4,13 @@ const routes = [
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/IndexPage.vue') }
-    ]
-  },
-  {
-    path: '/bibles/default',
-    component: () => import('layouts/MainLayout.vue'),
-    children: [
-      { path: '', component: () => import('pages/BibleToWeigh.vue') }
-    ]
-  },
 
+      {
+        path: 'bibles/default/',
+        component: () => import('pages/BiblesToWeigh.vue')
+      },
+    ]
+  },
   // Always leave this as last one,
   // but you can also remove it
   {

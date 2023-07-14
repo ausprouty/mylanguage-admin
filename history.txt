@@ -1,3 +1,5 @@
 yarn global add @quasar/cli
+quasar new component something
 
 quasar dev
+

@@ -4,14 +4,13 @@
       <q-list>
         <q-item>
           <q-item-section>
-            <q-checkbox :model-value = "true"></q-checkbox>
+            <q-checkbox :model-value="true"></q-checkbox>
           </q-item-section>
           <q-item-section>
-            <span class="text-white">Bible</span>
+            <span class="text-white">Bible in Index View</span>
           </q-item-section>
         </q-item>
       </q-list>
-
     </q-toolbar>
   </q-page>
 </template>
