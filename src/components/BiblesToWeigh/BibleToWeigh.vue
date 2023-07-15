@@ -3,7 +3,7 @@
     <q-card class="bg-blue-1">
     <q-item>
       <q-item-section class="col-xs-1">
-        <UpdateDefaultBibleCheckbox></UpdateDefaultBibleCheckbox>
+        <UpdateDefaultBibleCheckbox v-bind:book="book"/>
       </q-item-section>
       <q-item-section>
         <q-item-label>
@@ -40,13 +40,9 @@ export default {
   components:{
     UpdateDefaultBibleCheckbox
   },
+ 
 
-  methods:{
-    updateWeight(){
-      console.log ('I am changing weight')
-      alert(this.book.bid)
-    }
-  },
-  
+
+
 }
 </script>

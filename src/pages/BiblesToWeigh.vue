@@ -14,7 +14,7 @@
 import { defineComponent } from "vue";
 import { api } from "boot/axios";
 import { useQuasar } from "quasar";
-import BibleToWeigh from 'components/BibleToWeigh.vue'
+import BibleToWeigh from 'src/components/BiblesToWeigh/BibleToWeigh.vue'
 
 export default defineComponent({
   name: "BiblesToWeigh",
