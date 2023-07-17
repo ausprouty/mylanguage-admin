@@ -32,7 +32,7 @@
 
 
 <script>
-import UpdateDefaultBibleCheckbox from 'components/UpdateDefaultBibleCheckbox.vue'
+import UpdateDefaultBibleCheckbox from './UpdateDefaultBibleCheckbox.vue'
 export default {
   props: {
     book: Object,
@@ -40,7 +40,7 @@ export default {
   components:{
     UpdateDefaultBibleCheckbox
   },
- 
+
 
 
 
