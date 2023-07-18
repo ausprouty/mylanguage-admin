@@ -30,14 +30,15 @@ export default defineComponent({
     const $q = useQuasar();
   },
   mounted() {
-    console.log("I am mounted");
-    this.loadData();
+    console.log (this.$route.params.languageCodeIso);
+    this.loadData(this.$route.params.languageCodeIso);
   },
   methods: {
-    loadData() {
-      console.log("I am loading data");
+    loadData(languageCodeIso) {
+      let url = "api/bibles/text/" +  languageCodeIso
+      console.log("I am loading data from " +  url);
       api
-        .get("api/bibles/text/eng")
+        .get( url)
         .then((response) => {
           console.log(response.data);
           this.books = response.data;

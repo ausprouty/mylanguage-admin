@@ -4,28 +4,19 @@
 
 <script>
 import { api } from "boot/axios";
+import { ref } from 'vue'
 import { useQuasar } from "quasar";
 export default {
   name: "UpdateDefaultBibleCheckbox",
-
   props: {
     book: {
       type: Object,
       required: true,
     },
   },
-  setup() {
-    const $q = useQuasar();
-  },
-  data() {
-    return {
-      isChecked: false,
-      bid: null,
-    };
-  },
-  methods: {
-    // see https://serversideup.net/post-put-patch-requests-with-vuejs-and-axios/
-    updateWeight() {
+  setup () {
+    const $q = useQuasar()
+    function updateWeight() {
       let params = {};
       params.bid = this.book.bid;
       params.checked = this.isChecked;
@@ -35,24 +26,30 @@ export default {
         .then((response) => {
           console.log(response);
         })
-        .catch(() => {
-          $q.notify({
-            color: "negative",
-            position: "top",
-            message: "Loading failed",
-            icon: "report_problem",
-          });
-        });
-    },
+      .catch(() => {
+        $q.notify({
+          color: 'negative',
+          position: 'top',
+          message: 'Changing Weight Failed',
+          icon: 'report_problem'
+        })
+      })
+    }
+    return {updateWeight }
+  },
+  data() {
+    return {
+      isChecked: false,
+      bid: null,
+    };
+  },
+  methods: {
+    // see https://serversideup.net/post-put-patch-requests-with-vuejs-and-axios/
     toFormData(params) {
       var formData = new FormData();
       for (var key in params) {
         formData.append(key, params[key]);
       }
-      // Display the key/value pairs
-      //for (var pair of form_data.entries()) {
-      //  //console.log(params, pair[0] + ', ' + pair[1])
-      // }
       return formData;
     },
   },

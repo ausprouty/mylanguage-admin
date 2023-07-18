@@ -6,7 +6,7 @@ const routes = [
     children: [
 
       {
-        path: 'bibles/default/',
+        path: 'bibles/default/:languageCodeIso',
         component: () => import('pages/BiblesToWeigh.vue')
       },
     ]
