@@ -1,6 +1,6 @@
 <template>
   <q-page padding>
-    <q-toolbar class="bg-secondary col-xs-9 text-white">Select Default Bible for DBS </q-toolbar>
+    <q-toolbar class="bg-secondary col-xs-9 text-white">Select Default Bible for {{this.language.name}} DBS </q-toolbar>
       <BibleToWeigh
           v-for="book in this.books"
           :key="book.bid"
@@ -23,25 +23,42 @@ export default defineComponent({
   },
   data() {
     return {
-      books:[]
+      books:[],
+      language:[]
     };
   },
   setup() {
     const $q = useQuasar();
   },
   mounted() {
-    console.log (this.$route.params.languageCodeIso);
-    this.loadData(this.$route.params.languageCodeIso);
+    console.log (this.$route.params.languageCodeHL);
+    this.getBibles(this.$route.params.languageCodeHL);
+    this.getLanguage(this.$route.params.languageCodeHL);
   },
   methods: {
-    loadData(languageCodeIso) {
-      let url = "api/bibles/text/" +  languageCodeIso
-      console.log("I am loading data from " +  url);
+    getBibles(languageCodeHL) {
+      let url = "api/bibles/text/" +  languageCodeHL
       api
         .get( url)
         .then((response) => {
-          console.log(response.data);
           this.books = response.data;
+        })
+        .catch(() => {
+          $q.notify({
+            color: "negative",
+            position: "top",
+            message: "Loading failed",
+            icon: "report_problem",
+          });
+        });
+    },
+    getLanguage(languageCodeHL) {
+      let url = "api/language/" +  languageCodeHL
+      api
+        .get( url)
+        .then((response) => {
+          console.log (response.data)
+          this.language = response.data;
         })
         .catch(() => {
           $q.notify({

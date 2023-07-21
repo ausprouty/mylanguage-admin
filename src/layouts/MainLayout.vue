@@ -51,7 +51,7 @@ const linksList = [
   {
     title: 'Set Default Bibles',
     icon: 'school',
-    link: '/bibles/default/eng'
+    link: '/bibles/default/eng00'
   },
   {
     title: 'Original',
