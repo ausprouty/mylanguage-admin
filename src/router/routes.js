@@ -7,7 +7,12 @@ const routes = [
 
       {
         path: 'bibles/default/:languageCodeHL',
-        component: () => import('pages/BiblesToWeigh.vue')
+        component: () => import('src/pages/BiblesToWeigh.vue')
+      },
+      {
+        name: 'DBSBiblesToWeigh',
+        path: 'bibles/dbs/:languageCodeHL',
+        component: () => import('src/pages/DBSBiblesToWeigh.vue')
       },
     ]
   },

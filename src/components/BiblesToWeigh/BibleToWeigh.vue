@@ -57,7 +57,11 @@ export default {
     function showText(bid) {
       let params = {};
       params.bid = bid;
+
       params.entry = "Acts 1:3-11";
+      if ( this.book.collectionCode == 'OT'){
+        params.entry = "Genesis 1:1-11";
+      }
       var contentForm = this.toFormData(params);
       api
         .post("api/passage/text", contentForm)

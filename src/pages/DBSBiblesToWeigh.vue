@@ -1,7 +1,9 @@
 <template>
   <q-page padding>
 
-    <q-toolbar class="bg-secondary col-xs-9 text-white">Select Default Bible for {{this.language.name}} DBS   <q-space /> <NextDbsBible/></q-toolbar>
+    <q-toolbar class="bg-secondary col-xs-9 text-white">
+      Select Default Bible for {{this.language.name}} DBS   ({{ this.language.languageCodeHL }}) <q-space />
+      <NextDbsBible @nextLanguage="nextLanguage"/></q-toolbar>
       <BibleToWeigh
           v-for="book in this.books"
           :key="book.bid"
@@ -27,7 +29,7 @@ export default defineComponent({
   data() {
     return {
       books:[],
-      language:[]
+      language:[],
     };
   },
   setup() {
@@ -39,6 +41,12 @@ export default defineComponent({
     this.getLanguage(this.$route.params.languageCodeHL);
   },
   methods: {
+    nextLanguage(languageCodeHL){
+      this.$route.params.languageCodeHL = languageCodeHL
+      this.getBibles(this.$route.params.languageCodeHL);
+      this.getLanguage(this.$route.params.languageCodeHL);
+
+    },
     getBibles(languageCodeHL) {
       let url = "api/bibles/text/" +  languageCodeHL
       api

@@ -49,9 +49,9 @@ import EssentialLink from 'components/EssentialLink.vue'
 
 const linksList = [
   {
-    title: 'Set Default Bibles',
+    title: 'Set Default DBS Bibles',
     icon: 'school',
-    link: '/bibles/default/eng00'
+    link: '/bibles/dbs/afk00'
   },
   {
     title: 'Original',
