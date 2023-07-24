@@ -48,7 +48,11 @@ import { defineComponent, ref } from 'vue'
 import EssentialLink from 'components/EssentialLink.vue'
 
 const linksList = [
-  {
+{
+    title: 'Discovery Bible Study',
+    icon: 'school',
+    link: 'dbs/eng00/afk00/1'
+  },{
     title: 'Set Default DBS Bibles',
     icon: 'school',
     link: '/bibles/dbs/afk00'

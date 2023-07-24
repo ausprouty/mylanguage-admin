@@ -14,6 +14,11 @@ const routes = [
         path: 'bibles/dbs/:languageCodeHL',
         component: () => import('src/pages/DBSBiblesToWeigh.vue')
       },
+      {
+        name: 'DiscoveryBibleStudy',
+        path: 'dbs/:languageCodeHL1/:languageCodeHL2/:session',
+        component: () => import('src/pages/DiscoveryBibleStudy.vue')
+      },
     ]
   },
   // Always leave this as last one,
