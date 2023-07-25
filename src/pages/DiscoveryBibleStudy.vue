@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import LanuguageSelect from "components/DiscoveryBibleStudy/LanguageSelect.vue";
+import LanguageSelect from "components/DiscoveryBibleStudy/LanguageSelect.vue";
 import StudySelect from "components/DiscoveryBibleStudy/StudySelect.vue";
 export default {
   name: "DiscoveryBibleStudy",
