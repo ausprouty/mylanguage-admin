@@ -41,7 +41,6 @@ export default {
     };
   },
   created() {
-    console.log(this.$route.params.language1);
     api.get("api/dbs/languages").then((response) => {
       this.languages = response.data;
       this.insertLanguages();
@@ -54,10 +53,10 @@ export default {
       for (var i = 0; i < this.languages.length; i++) {
         var line = this.languages[i];
         if (line.languageCodeHL == this.$route.params.languageCodeHL1) {
-          this.language1 = line.name;
+          this.language1 = line;
         }
         if (line.languageCodeHL == this.$route.params.languageCodeHL2) {
-          this.language2 = line.name;
+          this.language2 = line;
         }
       }
     },

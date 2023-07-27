@@ -1,6 +1,6 @@
 <template>
   <div>
-    <q-btn push color="primary" label="Create Study" />
+    <q-btn push @click="createStudy" color="primary" label="Create Study" />
     </div>
 </template>
 
@@ -18,12 +18,12 @@ export default {
   },
   methods: {
     createStudy(){
-      var url = 'api/study/'+ language1 + '/' + language2 + '/' + study
+      var url = 'api/dbs/' + this.dbsStore.lesson +  '/' + this.dbsStore.language1.languageCodeHL + '/' + this.dbsStore.language2.languageCodeHL
       api
         .get(url)
         .then((response) => {
-          console.log (response.data)
-          this.languages = response.data
+          console.log ('I am emitting')
+          this.$emit("displayDbsText", response.data)
         })
     }
   }

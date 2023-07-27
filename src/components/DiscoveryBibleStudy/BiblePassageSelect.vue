@@ -47,8 +47,9 @@ export default {
           this.study  = line.title;
         }
       }
+    },
     updatePassage(){
-      this.dbsStore.lesson = this.study
+      this.dbsStore.lesson = this.study.lesson
     }
   }
 }

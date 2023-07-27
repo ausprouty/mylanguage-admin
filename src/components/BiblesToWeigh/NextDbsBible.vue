@@ -15,7 +15,6 @@ export default {
       api
         .get("api/bibles/dbs/next/" + this.$route.params.languageCodeHL)
         .then((response) => {
-          console.log (response.data)
           this.$emit("nextLanguage", response.data);
         })
     }
