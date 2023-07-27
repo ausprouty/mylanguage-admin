@@ -16,7 +16,7 @@ const routes = [
       },
       {
         name: 'DiscoveryBibleStudy',
-        path: 'dbs/:languageCodeHL1/:languageCodeHL2/:session',
+        path: 'dbs/:languageCodeHL1?/:languageCodeHL2?/:session?',
         component: () => import('src/pages/DiscoveryBibleStudy.vue')
       },
     ]

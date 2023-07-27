@@ -2,7 +2,7 @@
   <q-page padding>
     <div>
       <div><LanguageSelect /></div>
-      <div><StudySelect /></div>
+      <div><BiblePassageSelect /></div>
       <hr />
       <div v-html="this.text"></div>
     </div>
@@ -11,12 +11,12 @@
 
 <script>
 import LanguageSelect from "components/DiscoveryBibleStudy/LanguageSelect.vue";
-import StudySelect from "components/DiscoveryBibleStudy/StudySelect.vue";
+import BiblePassageSelect from "src/components/DiscoveryBibleStudy/BiblePassageSelect.vue";
 export default {
   name: "DiscoveryBibleStudy",
   components: {
     LanguageSelect,
-    StudySelect,
+    BiblePassageSelect,
   },
   data() {
     return {

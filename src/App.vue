@@ -1,5 +1,6 @@
 <template>
   <router-view />
+  This is from Bob
 </template>
 
 <script>

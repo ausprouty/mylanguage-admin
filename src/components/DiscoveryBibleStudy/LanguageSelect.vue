@@ -1,58 +1,72 @@
 <template>
   <div>
     <q-select
+      filled
       v-model="language1"
       :options="languages"
       option-label="name"
       option-value="languageCodeHL"
-      @on-change="updateLanguage1()"
+      @update:model-value="updateLanguage1"
       label="First Language"
-    /><br>
+    /><br />
     <q-select
+      filled
       v-model="language2"
       option-label="name"
       option-value="languageCodeHL"
-      @on-change="updateLanguage2()"
+      @update:model-value="updateLanguage2"
       :options="languages"
-      label="Second Language" /><br>
+      label="Second Language"
+    /><br />
   </div>
 </template>
 
 <script>
 import { api } from "boot/axios";
-import { useDbsStore } from 'stores/DbsStore'
+import { useDbsStore } from "stores/DbsStore";
 import { useQuasar } from "quasar";
 export default {
-  name: 'LanguageSelect',
+  name: "LanguageSelect",
   setup() {
-    const dbsStore = useDbsStore()
-
+    const dbsStore = useDbsStore();
     return {
-      dbsStore
-    }
+      dbsStore,
+    };
   },
   data() {
     return {
-      language1 :'',
-      language2 : '',
-      languages : []
+      language1: "",
+      language2: "",
+      languages: [],
     };
   },
-  created () {
-    api
-        .get("api/dbs/languages")
-        .then((response) => {
-          console.log (response.data)
-          this.languages = response.data
-        })
-    },
-    methods:{
-      updateLesson1(){
-        alert ('update 1')
-      },
-      updateLesson2(){
-        alert ('update 2')
+  created() {
+    console.log(this.$route.params.language1);
+    api.get("api/dbs/languages").then((response) => {
+      this.languages = response.data;
+      this.insertLanguages();
+      this.updateLanguage1();
+      this.updateLanguage2();
+    });
+  },
+  methods: {
+    insertLanguages() {
+      for (var i = 0; i < this.languages.length; i++) {
+        var line = this.languages[i];
+        if (line.languageCodeHL == this.$route.params.languageCodeHL1) {
+          this.language1 = line.name;
+        }
+        if (line.languageCodeHL == this.$route.params.languageCodeHL2) {
+          this.language2 = line.name;
+        }
       }
-    }
-}
+    },
+    updateLanguage1() {
+      this.dbsStore.language1 = this.language1;
+    },
+    updateLanguage2() {
+      this.dbsStore.language2 = this.language2;
+    },
+  },
+};
 </script>

@@ -11,5 +11,6 @@ export const useDbsStore = defineStore('DbsStore', {
       var url = this.language1 + '/' + this.language2 + '/' + this.lesson
       return url
     }
-  }
+  },
+
 })
