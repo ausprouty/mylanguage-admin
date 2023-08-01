@@ -3,9 +3,9 @@
     <div>
       <div><LanguageSelect /></div>
       <div><BiblePassageSelect /></div>
-      <div><CreateStudyButton/></div>
+      <div><CreateStudyButton   @displayDbsText="handleDisplayDbsText"/></div>
       <hr />
-      <div v-html="this.text"></div>
+      <div  v-html="this.text"></div>
     </div>
   </q-page>
 </template>
@@ -23,12 +23,11 @@ export default {
   },
   data() {
     return {
-      text: "hi there",
+      text: "",
     };
   },
   methods:{
-    displayDbsText(response){
-      alert ('I am to display')
+    handleDisplayDbsText(response){
       this.text = response
     }
   }
