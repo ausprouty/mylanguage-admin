@@ -2,15 +2,35 @@ import { defineStore } from 'pinia'
 
 export const useDbsStore = defineStore('DbsStore', {
   state: () => ({
-    language1: 'eng00',
-    language2: '',
+    language1: null,
+    language2: null,
     lesson: 1
   }),
   getters: {
-    url () {
-      var url = this.language1 + '/' + this.language2 + '/' + this.lesson
+    getUrl () {
+      var url = this.language1.languageCodeHL + '/' + this.language2.languageCodeHL + '/' + this.lesson
       return url
+    },
+    getLanguage1(){
+      return this.language1
+    },
+    getLanguage2(){
+      return this.language2
+    },
+    getLession(){
+      return this.lesson
     }
+  },
+  actions: {
+    updateLanguage1(newValue) {
+      this.language1 = newValue;
+    },
+    updateLanguage2(newValue) {
+      this.language2 = newValue;
+    },
+    updateLesson(newValue) {
+      this.lesson = newValue;
+    },
   },
 
 })

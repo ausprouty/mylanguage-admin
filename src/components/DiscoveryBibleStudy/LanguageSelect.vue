@@ -61,10 +61,12 @@ export default {
       }
     },
     updateLanguage1() {
-      this.dbsStore.language1 = this.language1;
+      //this.dbsStore.language1 = this.language1;
+      this.dbsStore.updateLanguage1(this.language1)
     },
     updateLanguage2() {
-      this.dbsStore.language2 = this.language2;
+     // this.dbsStore.language2 = this.language2;
+      this.dbsStore.updateLanguage2(this.language2)
     },
   },
 };
