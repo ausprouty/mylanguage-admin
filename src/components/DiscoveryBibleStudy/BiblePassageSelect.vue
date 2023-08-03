@@ -51,11 +51,9 @@ export default {
   },
   watch: {
     language1State() {
-      console.log ('language1State changed')
       this.showPassages()
     },
     language2State() {
-      console.log ('language2State changed')
       this.showPassages()
     },
   },
@@ -68,33 +66,29 @@ export default {
   },
   methods: {
     showPassages() {
-      console.log ('show passages')
-      console.log (this.language1State)
+
       if (this.language1State == null ||
         this.language2State == null
       ) {
-        console.log ('language null')
+        this.showAllPassages()
         return;
       } else if (
         typeof this.language1State.collectionCode == "undefined" ||
         typeof this.language2State.collectionCode == "undefined"
       ) {
-        console.log ('language Collection Codeundefined')
+        this.showAllPassages()
         return;
       } else if (
         this.language1State.collectionCode == "C" &&
         this.language2State.collectionCode == "C"
       ) {
-        console.log ('Show ALL')
         this.showAllPassages()
         return;
       } else {
-        console.log ('Show NT')
         this.showNTPassages();
       }
     },
     showAllPassages() {
-      console.log ('show ALL passages')
       this.supportedPassages = this.passages;
       for (var i = 0; i < this.passages.length; i++) {
         var line = this.passages[i];
@@ -104,7 +98,6 @@ export default {
       }
     },
     showNTPassages() {
-      console.log ('show NT passages')
       this.supportedPassages = [];
       this.study = null;
       for (var i = 0; i < this.passages.length; i++) {
@@ -118,9 +111,7 @@ export default {
       }
     },
     updatePassage() {
-      console.log (this.study.lesson)
       this.dbsStore.updateLesson(this.study.lesson)
-     // this.dbsStore.lesson = this.study.lesson;
     },
   },
 };

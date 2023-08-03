@@ -4,7 +4,7 @@ export const useDbsStore = defineStore('DbsStore', {
   state: () => ({
     language1: null,
     language2: null,
-    lesson: 1
+    lesson: null,
   }),
   getters: {
     getUrl () {
@@ -17,7 +17,7 @@ export const useDbsStore = defineStore('DbsStore', {
     getLanguage2(){
       return this.language2
     },
-    getLession(){
+    getLesson(){
       return this.lesson
     }
   },
