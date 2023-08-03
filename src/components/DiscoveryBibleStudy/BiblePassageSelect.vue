@@ -14,107 +14,114 @@
 </template>
 
 <script>
-import { watch } from 'vue';
+import { watch, ref } from "vue";
 import { api } from "boot/axios";
-import { useDbsStore } from 'stores/DbsStore'
+import { useDbsStore } from "stores/DbsStore";
 export default {
-  name: 'BiblePassageSelect',
+  name: "BiblePassageSelect",
   setup() {
-    const dbsStore = useDbsStore()
-
-    const language1FromStore = dbsStore.getLanguage1
-    // Method triggered when the value in the store changes
-    const handleLanguage1Change = (newValue, oldValue) => {
-      console.log('Language1 changed from', oldValue, 'to', newValue);
-    };
-    // Watch for changes to the reactive property 'valueFromStore'
-    watch(language1FromStore, (newValue, oldValue) => {
-      handleLanguage1Change(newValue, oldValue);
-    });
-
-    const language2FromStore = dbsStore.getLanguage1
-    // Method triggered when the value in the store changes
-    const handleLanguage2Change = (newValue, oldValue) => {
-      console.log('Language2 changed from', oldValue, 'to', newValue);
-    };
-    // Watch for changes to the reactive property 'valueFromStore'
-    watch(language2FromStore, (newValue, oldValue) => {
-      handleLanguage2Change(newValue, oldValue);
-    });
-
-
+    const dbsStore = useDbsStore();
+    const language1State = ref(dbsStore.getLanguage1);
+    watch(
+      () => dbsStore.getLanguage1,
+      (newValue) => {
+        language1State.value = newValue;
+      }
+    );
+    const language2State = ref(dbsStore.getLanguage1);
+    watch(
+      () => dbsStore.getLanguage2,
+      (newValue) => {
+        language2State.value = newValue;
+      }
+    );
     return {
-      language1FromStore,
-      language2FromStore,
+      language1State,
+      language2State,
       dbsStore
-    }
+    };
   },
   data() {
     return {
-      study : this.$route.params.session,
-      passages : [],
+      study: this.$route.params.session,
+      passages: [],
       supportedPassages: [],
       scope: null,
     };
   },
-  mounted() {
-    api
-        .get("api/dbs/studies")
-        .then((response) => {
-          this.passages = response.data
-          this.supportedPassages = this.passages
-          this.showPassages()
-        })
-
+  watch: {
+    language1State() {
+      console.log ('language1State changed')
+      this.showPassages()
+    },
+    language2State() {
+      console.log ('language2State changed')
+      this.showPassages()
+    },
   },
-  methods:{
-
-    showPassages(){
-      console.log ('showPassages')
+  mounted() {
+    api.get("api/dbs/studies").then((response) => {
+      this.passages = response.data
+      this.supportedPassages = this.passages
       this.showAllPassages()
-      if (typeof this.dbsStore.language1 == 'undefined' ||
-          typeof this.dbsStore.language2 == 'undefined' ){
-          return
-      }
-      else if (
-        typeof this.dbsStore.language1.collectionCode == 'undefined' ||
-        typeof this.dbsStore.language2.collectionCode == 'undefined'){
-          return
-      }
-      else if (this.dbsStore.language1.collectionCode == 'C' &&
-          this.dbsStore.language2.collectionCode == 'C'){
-          return
-      }
-      else{
-        this.showNTPassages()
+    });
+  },
+  methods: {
+    showPassages() {
+      console.log ('show passages')
+      console.log (this.language1State)
+      if (this.language1State == null ||
+        this.language2State == null
+      ) {
+        console.log ('language null')
+        return;
+      } else if (
+        typeof this.language1State.collectionCode == "undefined" ||
+        typeof this.language2State.collectionCode == "undefined"
+      ) {
+        console.log ('language Collection Codeundefined')
+        return;
+      } else if (
+        this.language1State.collectionCode == "C" &&
+        this.language2State.collectionCode == "C"
+      ) {
+        console.log ('Show ALL')
+        this.showAllPassages()
+        return;
+      } else {
+        console.log ('Show NT')
+        this.showNTPassages();
       }
     },
-    showAllPassages(){
-        this.supportedPassages = this.passages
-        for (var i = 0; i < this.passages.length; i++) {
-          var line = this.passages[i];
-          if (line.lesson == this.$route.params.session) {
-            this.study  = line.title;
-          }
+    showAllPassages() {
+      console.log ('show ALL passages')
+      this.supportedPassages = this.passages;
+      for (var i = 0; i < this.passages.length; i++) {
+        var line = this.passages[i];
+        if (line.lesson == this.$route.params.session) {
+          this.study = line.title;
         }
+      }
     },
-    showNTPassages(){
-
+    showNTPassages() {
+      console.log ('show NT passages')
       this.supportedPassages = [];
       this.study = null;
       for (var i = 0; i < this.passages.length; i++) {
         var line = this.passages[i];
-        if (line.testament == 'NT'){
+        if (line.testament == "NT") {
           this.supportedPassages.push(line);
           if (line.lesson == this.$route.params.session) {
-            this.study  = line.title;
+            this.study = line.title;
           }
         }
       }
     },
-    updatePassage(){
-      this.dbsStore.lesson = this.study.lesson
-    }
-  }
-}
+    updatePassage() {
+      console.log (this.study.lesson)
+      this.dbsStore.updateLesson(this.study.lesson)
+     // this.dbsStore.lesson = this.study.lesson;
+    },
+  },
+};
 </script>
