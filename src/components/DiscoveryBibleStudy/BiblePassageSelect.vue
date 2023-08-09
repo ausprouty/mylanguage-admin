@@ -58,6 +58,7 @@ export default {
     },
   },
   mounted() {
+    console.log (process.env.VUE_APP_API_BASE_URL)
     api.get("api/dbs/studies").then((response) => {
       this.passages = response.data
       this.supportedPassages = this.passages

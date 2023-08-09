@@ -6,18 +6,18 @@ const routes = [
     children: [
 
       {
-        path: '/bibles/default/:languageCodeHL',
-        component: () => import('src/pages/BiblesToWeigh.vue')
+        path: 'bibles/default/:languageCodeHL',
+        component: () => import('pages/BiblesToWeigh.vue')
       },
       {
         name: 'DBSBiblesToWeigh',
-        path: '/bibles/dbs/:languageCodeHL',
-        component: () => import('src/pages/DBSBiblesToWeigh.vue')
+        path: 'bibles/dbs/:languageCodeHL',
+        component: () => import('pages/DBSBiblesToWeigh.vue')
       },
       {
         name: 'DiscoveryBibleStudy',
-        path: '/dbs/:languageCodeHL1?/:languageCodeHL2?/:session?',
-        component: () => import('src/pages/DiscoveryBibleStudy.vue')
+        path: 'dbs/:languageCodeHL1?/:languageCodeHL2?/:session?',
+        component: () => import('pages/DiscoveryBibleStudy.vue')
       },
     ]
   },
