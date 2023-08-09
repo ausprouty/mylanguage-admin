@@ -11,8 +11,8 @@
 
 const { configure } = require('quasar/wrappers');
 
-
-module.exports = configure(function (/* ctx */) {
+//https://quasar.dev/quasar-cli-webpack/handling-process-env#adding-to-process-env
+module.exports = configure(function (ctx ) {
   return {
     eslint: {
       // fix: true,
@@ -57,8 +57,16 @@ module.exports = configure(function (/* ctx */) {
     build: {
       target: {
         browser: [ 'es2019', 'edge88', 'firefox78', 'chrome87', 'safari13.1' ],
-        node: 'node16'
+        node: 'node16',
       },
+
+      env: require('dotenv').config( {path: '.env.development'}).parsed,
+
+      env: {
+        API: ctx.dev
+          ? 'https://dev.api.com'
+          : 'https://prod.api.com'
+      }
 
       vueRouterMode: 'history', // available values: 'hash', 'history'
       // vueRouterBase,
@@ -85,10 +93,11 @@ module.exports = configure(function (/* ctx */) {
       // ]
     },
 
+
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#devServer
     devServer: {
       // https: true
-      open: true // opens browser window automatically
+      open: true ,// opens browser window automatically
     },
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#framework

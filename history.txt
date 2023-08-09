@@ -1,5 +1,10 @@
 yarn global add @quasar/cli
-quasar new component something
+removed package-lock.json as per yarn
 
+yarn add --dev dotenv
+https://quasar.dev/quasar-cli-vite/handling-process-env
+
+
+quasar new component something
 quasar dev
 
