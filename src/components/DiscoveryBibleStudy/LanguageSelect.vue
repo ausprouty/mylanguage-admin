@@ -41,7 +41,6 @@ export default {
     };
   },
   created() {
-    console.log (process.env.VUE_APP_API_BASE_URL)
     api.get("api/dbs/languages").then((response) => {
       this.languages = response.data;
       this.insertLanguages();

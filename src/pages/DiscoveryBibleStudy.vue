@@ -4,6 +4,7 @@
       <div><LanguageSelect /></div>
       <div><BiblePassageSelect /></div>
       <div><CreateStudyButton   @displayDbsText="handleDisplayDbsText"/></div>
+      <div><PdfButton/></div>
       <hr />
       <div  v-html="this.text"></div>
     </div>
@@ -12,14 +13,16 @@
 
 <script>
 import LanguageSelect from "components/DiscoveryBibleStudy/LanguageSelect.vue";
-import BiblePassageSelect from "src/components/DiscoveryBibleStudy/BiblePassageSelect.vue";
-import CreateStudyButton from "src/components/DiscoveryBibleStudy/CreateStudyButton.vue";
+import BiblePassageSelect from "components/DiscoveryBibleStudy/BiblePassageSelect.vue";
+import CreateStudyButton from "components/DiscoveryBibleStudy/CreateStudyButton.vue";
+import PdfButton from "components/PdfButton3.vue";
 export default {
   name: "DiscoveryBibleStudy",
   components: {
     LanguageSelect,
     BiblePassageSelect,
-    CreateStudyButton
+    CreateStudyButton,
+    PdfButton
   },
   data() {
     return {
