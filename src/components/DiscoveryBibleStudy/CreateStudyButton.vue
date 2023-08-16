@@ -10,6 +10,7 @@ import { watch, ref } from "vue";
 import { useDbsStore } from 'stores/DbsStore'
 export default {
   name: 'CreateStudyButton',
+  props: ['session'],
   setup() {
     const dbsStore = useDbsStore();
     const language1State = ref(dbsStore.getLanguage1);
@@ -44,7 +45,7 @@ export default {
     return {
       language1:null,
       language2: null,
-      lesson: null,
+      lesson: this.$route.params.session,
       ready:false,
     };
   },

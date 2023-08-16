@@ -2,11 +2,11 @@
   <q-page padding>
     <div>
       <div><LanguageSelect /></div>
-      <div><BiblePassageSelect /></div>
+      <div><BiblePassageSelect :session="session"/></div>
       <div><CreateStudyButton   @displayDbsText="handleDisplayDbsText"/></div>
-      <div><PdfButton/></div>
+      <div><PdfButton :text="text"  :filename="filename"/></div>
       <hr />
-      <div  v-html="this.text"></div>
+      <div id="pdfText" v-html="this.text"></div>
     </div>
   </q-page>
 </template>
@@ -15,9 +15,10 @@
 import LanguageSelect from "components/DiscoveryBibleStudy/LanguageSelect.vue";
 import BiblePassageSelect from "components/DiscoveryBibleStudy/BiblePassageSelect.vue";
 import CreateStudyButton from "components/DiscoveryBibleStudy/CreateStudyButton.vue";
-import PdfButton from "components/PdfButton3.vue";
+import PdfButton from "src/components/PdfButton.vue";
 export default {
   name: "DiscoveryBibleStudy",
+  props: ['languageCodeHL1','languageCodeHL2','session'],
   components: {
     LanguageSelect,
     BiblePassageSelect,
@@ -27,6 +28,7 @@ export default {
   data() {
     return {
       text: "",
+      filename: 'DBS'
     };
   },
   methods:{

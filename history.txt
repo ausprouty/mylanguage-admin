@@ -15,7 +15,7 @@ https://www.npmjs.com/package/html2pdf.js/v/0.9.1
 
 https://codersdiaries.com/blog/vue-js-pdf-generate
 
-vue-pdf
+vue-pdf => does not work, styles are terrible
 
 
 

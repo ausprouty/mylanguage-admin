@@ -1,34 +1,31 @@
 <template>
-  <div>
-    <button @click="generatePDF">Generate PDF</button>
-  </div>
+	<div id="home" class="container mt-5">
+		<div class="row justify-content-center">
+			<div class="col-md-6">
+				<div class="card card-body">
+					<button class="btn btn-primary pl-5 pr-5" @click="download">Download PDF</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </template>
-
 <script>
-import html2pdf from "vue-html2pdf";
+// from https://codersdiaries.com/blog/vue-js-pdf-generate
+import jsPDF from 'jsPDF'
 
 export default {
-
-  methods: {
-    async generatePDF() {
-      //const content = document.getElementById("pdf-content");
-      const content = '<p>This is my content</p>'
-      const options = {
-        margin: 10,
-        filename: "generated_pdf.pdf",
-        image: { type: "jpeg", quality: 0.98 },
-        html2canvas: { scale: 2 },
-        jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
-      };
-
-      //const pdfData = await this.$refs.pdf.createPdf(content, options);
-      const pdfData = await html2pdf.pdf.createPdf(content, options);html2pdf.
-      pdfData.download();
-    },
+	name: 'PdfButton',
+	props:{
+    text: String,
+    filename: String,
   },
-};
+	methods: {
+		download () {
+      let pdfName = this.filename;
+      var doc = new jsPDF();
+      doc.fromHTML(this.text, 10, 10);
+      doc.save(pdfName + '.pdf');
+    }
+	}
+}
 </script>
-
-<style scoped>
-/* Add your styles here */
-</style>
